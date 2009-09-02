@@ -1,0 +1,11 @@
+Known TODO list:
+
+1.0
+* Create datatype to make sure facebook to eZ Publish data in facebookconnectuser
+  table is deleted when eZ Publish user is deleted
+
+1.1
+* support for Reclaiming Accounts url using a custom view or something
+
+1.2
+* If there is a use case for it, add support for Friend Linking Access if needed
