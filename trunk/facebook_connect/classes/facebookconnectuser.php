@@ -186,6 +186,7 @@ class FaceBookConnectUser extends eZUser
     /**
      * Adds eZ Publish facebook user group (content.ini[FacebookConnect]DefaultUserPlacement) 
      * node placment if defined.
+     * NOTE: User (hence object) will only get new node placment if published!
      * 
      * @param int $userID
      * @return bool Return true on success
@@ -196,7 +197,7 @@ class FaceBookConnectUser extends eZUser
         if ( $userID && is_numeric( $userID ) && $ini->hasVariable( 'FacebookConnect', 'DefaultUserPlacement' ) )
         {
             $nodeId = (int) $ini->variable( 'FacebookConnect', 'DefaultUserPlacement' );
-            $assignedNodes = eZContentObjectTreeNode::getParentNodeIdListByContentObjectID( $userID );
+            $assignedNodes = self::getParentNodeIdListByContentObjectID( $userID );
             if ( $nodeId && $assignedNodes && !in_array( $nodeId, $assignedNodes ) )
             {
                 $object = eZContentObject::fetch( $userID );
@@ -223,6 +224,28 @@ class FaceBookConnectUser extends eZUser
         }
         return false;
     }
+
+    static protected function getParentNodeIdListByContentObjectID( $objectId )
+    {
+        if ( method_exists('eZContentObjectTreeNode','getParentNodeIdListByContentObjectID') )
+        {
+            return eZContentObjectTreeNode::getParentNodeIdListByContentObjectID( $objectId );
+        }
+
+        if ( !$objectId )
+            return null;
+
+        $db = eZDB::instance();
+        $query = 'SELECT parent_node_id FROM ezcontentobject_tree WHERE contentobject_id = ' . $objectId;
+        $rows = $db->arrayQuery( $query );
+        $parentNodeIDs = array();
+        foreach( $rows as $row )
+        {
+            $parentNodeIDs[] = $row['parent_node_id'];
+        }
+        return $parentNodeIDs;
+    }
+    
 }
 
 ?>
