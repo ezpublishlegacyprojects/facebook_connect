@@ -50,6 +50,7 @@ $ViewList['connect'] = array( 'functions' => array( 'connect' ),
 $FunctionList = array();
 $FunctionList['login'] = array( );
 $FunctionList['connect'] = array( );
+$FunctionList['logout'] = array( );// Not Used by view, this is for cheking access to facebook/logout in templates
 
 
 
