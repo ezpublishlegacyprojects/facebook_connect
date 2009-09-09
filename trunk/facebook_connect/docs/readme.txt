@@ -78,7 +78,7 @@ C. Integrated, there is one eZ Publish user pr Facebook user
 3. Give anonymous users access to facebook/connect either in roles or your site.ini.append.php like:
   [RoleSettings]
   PolicyOmitList[]=facebook/connect
-4. (optional) Give the fb user access to facebook/logut for use in templates to distinguish between normal & fb users
+4. (optional) Give the fb user group (1.C.1) access to facebook/logut for use in templates to distinguish between normal & fb users
 5. (optional) Also follow the "1.A. Client side" tasks if you plan to use FBML or the FB javascript api.
 
 
