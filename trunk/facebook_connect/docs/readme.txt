@@ -84,6 +84,7 @@ C. Integrated, there is one eZ Publish user pr Facebook user
 
 
 Logout button/link example for 1.B and 1.C:
+NOTE: This requries that you have setup 1,A as well since it uses Facebook javascript!
 
   <script type="text/javascript">
   {def $apikey = ezini('FacebookConnect', 'APIKey', 'content.ini')}
