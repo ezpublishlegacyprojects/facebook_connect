@@ -138,7 +138,14 @@ else if ( $Module->isCurrentAction( 'Register' ) )
         $http->removeSessionVariable( 'RegisterUserID' );
     }
 
-    if ( eZSession::userHasSessionCookie() && eZSession::userSessionIsValid() )
+    $validSession = true;
+    if ( class_exists('eZSession') )
+    {
+        // Provide somewhat better session validation if available ( 4.1 and higher )
+        $validSession = eZSession::userHasSessionCookie() && eZSession::userSessionIsValid();
+    }
+
+    if ( $validSession )
     {
         $defaultUserPlacement = (int) ( $contentINI->hasVariable( 'FacebookConnect', 'DefaultUserPlacement' ) ? $contentINI->variable( 'FacebookConnect', 'DefaultUserPlacement' ) : $ini->variable( 'UserSettings', 'DefaultUserPlacement' ) );
 
@@ -147,7 +154,7 @@ else if ( $Module->isCurrentAction( 'Register' ) )
         if ( $rows[0]['count'] < 1 )
         {
             $errMsg = ezi18n( 'design/standard/user', 'The node (%1) specified in [UserSettings].DefaultUserPlacement setting in site.ini does not exist!', null, array( $defaultUserPlacement ) );
-            eZDebug::writeError( "$errMsg" );
+            eZDebug::writeError( "$errMsg", 'facebook/connect' );
         }
         else
         {
