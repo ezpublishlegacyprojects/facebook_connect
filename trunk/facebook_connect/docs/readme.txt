@@ -90,6 +90,9 @@ and in javascript using either 'FBML' code or Facebook JavaScript API.
 4. (optional) Give the fb user group (1.3.1) access to facebook/logut for use in templates to distinguish between normal & fb users
 5. (optional) Also follow the "1.1. Client side" tasks if you plan to use FBML or the FB javascript api, but use the login
    button code from this example!
+6. (Not implemented yet) Setup fabook user register handler, two handlers are planned to be included:
+    * The current one, where user manually enters profile info
+    * facerbook api variant, where user just enters email, and all other data is retrieved from facebook profile
 
 
 
