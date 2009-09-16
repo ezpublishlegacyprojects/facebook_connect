@@ -201,7 +201,9 @@ class FaceBookConnectUser extends eZUser
             if ( $nodeId && $assignedNodes && !in_array( $nodeId, $assignedNodes ) )
             {
                 $object = eZContentObject::fetch( $userID );
-                if ( $object instanceof eZContentObject )
+                $node   = eZContentObjectTreeNode::fetch( $nodeId );
+                if ( $object instanceof eZContentObject
+                  && $node instanceof eZContentObjectTreeNode )
                 {
                     $mainNodeId   = $object->attribute( 'main_node_id' );
                     $insertedNode = $object->addLocation( $nodeId, true );
@@ -219,6 +221,10 @@ class FaceBookConnectUser extends eZUser
 
                     eZContentCacheManager::clearContentCacheIfNeeded( $userID );
                     return true;
+                }
+                else
+                {
+                    eZDebug::writeError( "Could not fetch node $nodeId or user object $userID.", __METHOD__ );
                 }
             }
         }
