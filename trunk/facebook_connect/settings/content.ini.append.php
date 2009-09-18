@@ -1,5 +1,10 @@
 <?php /* #?ini charset="utf-8"?
 
+[DataTypeSettings]
+ExtensionDirectories[]=facebook_connect
+AvailableDataTypes[]=facebookconnect
+
+
 # Copy and uncomment to content.ini in your override, sites siteaccess or site extension
 [FacebookConnect]
 ## Facebook Connect settings

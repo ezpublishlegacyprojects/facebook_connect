@@ -162,6 +162,27 @@ class FaceBookConnectUser extends eZUser
         }
         return false;
     }
+    
+    /**
+     * Remove facebook user connection.
+     * 
+     * @param int $userID
+     * @return bool Return true on success
+     */
+    static public function fbUnConnectUser( $userID )
+    {
+        if ( $userID && is_numeric( $userID ) )
+        {
+            $db  = eZDB::instance();
+            $ret = $db->query( "DELETE FROM facebookconnectuser WHERE user_id=$userID" );
+            unset($db);
+            if ( $ret !== false )
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
     /**
      * {@see FaceBookConnectUser::fbConnectUser()}
@@ -231,6 +252,10 @@ class FaceBookConnectUser extends eZUser
         return false;
     }
 
+    /**
+     * Re implement {@link eZContentObjectTreeNode::getParentNodeIdListByContentObjectID}
+     * for eZ Publish 4.0 support
+     */
     static protected function getParentNodeIdListByContentObjectID( $objectId )
     {
         if ( method_exists('eZContentObjectTreeNode','getParentNodeIdListByContentObjectID') )
