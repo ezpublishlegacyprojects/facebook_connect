@@ -49,7 +49,7 @@ and in javascript using either 'FBML' code or Facebook JavaScript API.
   FB.init("{$apikey}", "{'extension/facebook_connect/xd_receiver.html'|ezroot(no)}");
   </script>
 5. Only use the following login code if you don't combine this approach with 1.2 or 1.3: 
- a. Create the login button with <fb:login-button></fb:login-button>
+ a. Create the login button with <fb:login-button></fb:login-button>                                 
  b. Alternative button if you didn't enable FBML (#1):
     <a href="#" onclick="FB.Connect.requireSession(); return false;" >
     <img id="fb_login_image" src="http://static.ak.fbcdn.net/images/fbconnect/login-buttons/connect_light_medium_long.gif" alt="Connect" />
@@ -65,6 +65,8 @@ and in javascript using either 'FBML' code or Facebook JavaScript API.
   [FacebookConnect]
   AnonymousFacebookUserId=<eZPublish-Shared-Facebook-UserID>
 3. Login button:
+  <fb:login-button onlogin='window.location={"facebook/login"|ezurl};'></fb:login-button>
+  OR
   <a href={"facebook/login"|ezurl}>
   <img src="http://static.ak.fbcdn.net/images/fbconnect/login-buttons/connect_light_medium_long.gif" alt="Connect"/>
   </a>
@@ -81,6 +83,8 @@ and in javascript using either 'FBML' code or Facebook JavaScript API.
 1. (optional) See facebook_connect/settings/content.ini for facebook/connect settings you can define
    so that for instance new users are created in another user group then general eZ Publish users.
 2. Login button:
+  <fb:login-button onlogin='window.location={"facebook/connect"|ezurl};'></fb:login-button>
+  OR
   <a href={"facebook/connect"|ezurl}>
   <img src="http://static.ak.fbcdn.net/images/fbconnect/login-buttons/connect_light_medium_long.gif" alt="Connect"/>
   </a>
