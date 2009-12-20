@@ -3,8 +3,6 @@ Known TODO list:
 1.0
 * Implement facebook/connect handlers to be able to control how profile data is 
   filled out (manually like now or from facebook profile for instance)
-* Create datatype to make sure facebook to eZ Publish data in facebookconnectuser
-  table is deleted when eZ Publish user is deleted
 
 1.1
 * support for Reclaiming Accounts url using a custom view or something
