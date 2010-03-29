@@ -98,9 +98,10 @@ class FaceBookConnectUser extends eZUser
     static public function createByeZUser( eZUser $user )
     {
         $fbUser = new self( array() );
-        foreach ( $user->attributes() as $attribute )
+        $def = self::definition();
+        foreach ( $def['fields'] as $field => $fieldDef )
         {
-            $fbUser->setAttribute( $attribute, $user->attribute( $attribute ) );
+            $fbUser->setAttribute( $field, $user->attribute( $field ) );
         }
         return $fbUser;
     }

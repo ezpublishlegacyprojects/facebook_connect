@@ -40,8 +40,10 @@ $fbException = '';
 
 $fb = new Facebook( $apiKey, $secret );
 
+
 // Require that facebook user is loggedin, user will be redirected to facebook login page if his not logged in
 $fbUid = $fb->require_login();
+
 
 // Make sure session is available for javascript code as well
 try
@@ -80,7 +82,7 @@ if ( $redirectionURI === '' || trim( $redirectionURI ) === '' )
     }
 }
 
-$user = FaceBookConnectUser::fetchByFacebookID( $fbUid );
+$user = $fbUid ? FaceBookConnectUser::fetchByFacebookID( $fbUid ) : null;
 if ( $user instanceof eZUser )
 {
     if ( $user->isEnabled() )
